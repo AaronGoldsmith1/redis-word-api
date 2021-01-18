@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv').config();
 
+const port = process.env.PORT || 3000;
 const redis = require('redis');
 
 const client = redis.createClient({
@@ -9,11 +10,7 @@ const client = redis.createClient({
     port: process.env.REDIS_PORT,
     password: process.env.REDIS_PASSWORD,
 }).on('error', err => {
-  console.log('Error ' + err);
-});
-
-app.listen(3000, () => {
- console.log('Server running on port 3000');
+  console.log(`Error: ${err}`);
 });
 
 app.get('/:word', function (req, res) {
@@ -25,5 +22,8 @@ app.get('/:word', function (req, res) {
   });
 })
 
+app.listen(process.env.port || 3000, () => {
+ console.log(`Server running on port: ${port}`);
+});
 
 
