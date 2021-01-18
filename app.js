@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
-const dotenv = require('dotenv').config();
+const dotenv = require('dotenv')
+
+dotenv.config();
 
 const port = process.env.PORT || 3000;
 const redis = require('redis');
@@ -9,7 +11,8 @@ const client = redis.createClient({
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT,
     password: process.env.REDIS_PASSWORD,
-}).on('error', err => {
+})
+client.on('error', err => {
   console.log(`Error: ${err}`);
 });
 
