@@ -1,12 +1,13 @@
 const express = require("express");
 const app = express();
+const dotenv = require('dotenv').config();
 
 const redis = require('redis');
 
 const client = redis.createClient({
-    host: 'redis-17409.c8.us-east-1-4.ec2.cloud.redislabs.com',
-    port: 17409,
-    password: '7wxADJhObnAqeuI3Z3XlSKN9NCHs3aaM'
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+    password: process.env.REDIS_PASSWORD,
 });
 
 client.on('error', err => {
