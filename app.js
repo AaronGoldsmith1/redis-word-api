@@ -17,7 +17,7 @@ client.on('error', err => {
   console.log(`Error: ${err}`);
 });
 
-app.get('/:word', function (req, res) {
+app.get('/:word', (req, res) => {
   client.get(req.params.word, (err, reply) => {
     if (err) {
       return res.status(500).json({ error })
